@@ -18,6 +18,7 @@
 			Navigation:
 
 				ls														-> Montre le contenue du dosier courant.
+					-l													-> Détaille le contenue.
 
 				pwd														-> Montre l'emplacement courant.
 
@@ -31,12 +32,24 @@
 				clear													-> vide le terminal.
 
 
-			Création, gestion de dossiers et fichiers:
+			Création, gestion de dossiers, fichiers et archives:
 
 				mkdir "Nom de dossier"									-> Créé un dossier.
 				touch "Nom de fichier.extention"						-> Créé un fichier du type du .extention choisi.
+					-t "Nom de document" xxxxxxxxxx						-> change la date d'un document (ls -l) jour mois annee heure minute.
+
+				chmod													-> Change les permission d'un document (ls -l), r = read, w = write, x = execute.
+					u													-> user permission, + ou - r w x pour ajouter ou elever les droit
+					g													-> groupe permission, + ou - r w x pour ajouter ou elever les droit
+					o													-> other permission, + ou - r w x pour ajouter ou elever les droit
+
+				tar -cf <nom de l'archive> <nom de fichier>				-> Creer un archive tar a partire des fichiers specifier.
+
+				tar -xvf <nom de l'archive>								-> Extrait le contenue d'une archive tar.
 
 				vi "fichier"											-> Ouvre le "fichier" dans Vi.
+
+				code .													-> Ouvre le dossier dans VS code.
 
 				rm
 					"fichier"											-> Supprime le "fichier".
