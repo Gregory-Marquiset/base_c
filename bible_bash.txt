@@ -39,9 +39,9 @@
 					-t "Nom de document" xxxxxxxxxx						-> change la date d'un document (ls -l) jour mois annee heure minute.
 
 				chmod													-> Change les permission d'un document (ls -l), r = read, w = write, x = execute.
-					u													-> user permission, + ou - r w x pour ajouter ou elever les droit
-					g													-> groupe permission, + ou - r w x pour ajouter ou elever les droit
-					o													-> other permission, + ou - r w x pour ajouter ou elever les droit
+					u <+/-> <u/g/o> <nom du document>					-> user permission, u + ou - r w x pour ajouter ou elever les droit
+					g <+/-> <u/g/o> <nom du document>					-> groupe permission, g + ou - r w x pour ajouter ou elever les droit
+					o <+/-> <u/g/o> <nom du document>					-> other permission, o + ou - r w x pour ajouter ou elever les droit
 
 				tar -cf <nom de l'archive> <nom de fichier>				-> Creer un archive tar a partire des fichiers specifier.
 
