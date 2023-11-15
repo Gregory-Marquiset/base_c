@@ -1,0 +1,95 @@
+
+	varianble et opperateurs en c
+		les bases pour comprendre les variables et opperateur en c
+
+			<--variables-->
+				creer une variable et lui indiquer sont contenue
+					1. choisir une variable en fonction de ses besoin
+					2. declarer une variable
+					3. initialiser une variable
+
+				declaration et initialisation
+					declaritions
+						creer une variable en indicant le type puis le nom
+							<type>	<nom>;
+
+					initialisation
+						donner une valeur a une variable, depend du type
+							<nom> = <valeur>;
+
+					-> pour un entier :
+						int		chiffre;
+						chiffre = 10;
+
+					-> pour un character :
+						unsigned char	lettre;
+						lettre = 'A';
+
+					peut etre racourcie mais interdit a 42 :
+						<type> <nom> = <valeur>;
+
+
+				type de variable
+					choisir entre les 3 categorie de variable (character, entier ou flotant) et les types disponible
+
+					-> les unsigned
+						les variables de base contiennent des valeurs négatives comme positive mais les passer en <unsigned variable> interdit les valeur négative
+
+					-> les character :
+						pour un character on utilise un <char> qui va indiquer un characters de la table ascii (127 character) ou l'etendu ISO 8859-1 (255 character)
+
+						|		<NOM>			| Octé\mémoire	|	val\min		|	val\max		|
+						|	char				|	1oct		|	-			|	-			|	a eviter, traiter differament selont les compilateur
+						|	signed char			|	1oct		|	-128		|	127			|	peut contenir un nombre entre -128 et 127 (sellement table ascii standar)
+						|	unsigned char		|	1oct		|	0			|	255			|	commence a 0 et peut monter jusqu'a 255 (donc ascii etendue aussi)
+
+						-> pour initialiser un char, 2 solution possible
+
+							-> exemple :
+								en indicant directement le character choisi, le placer entre '' idem pour les simbole comme '\n' '\0' etc...
+									unsigned char	lettre;
+									lettre = 'A';
+
+							-> exemple :
+								pour indiquer via la table ascii utiliser directement le chiffre corespondant 'A' = 65
+									unsigned char	lettre;
+									lettre = 65;
+
+					-> les entier :
+						pour contenir un nombre entier donc sans virgule
+
+						|		<NOM>			| Octé\mémoire	|	val\min						|	val\max						|
+						|	int					|	4oct		|	-2.147.483.648				|	2.147.483.647				|
+						|	unsigned int		|	4oct		|	0							|	4.294.967.295				|
+						|	long				|	4oct		|	-2.147.483.648				|	2.147.483.647				|
+						|	unsigned long		|	4oct		|	0							|	4.294.967.295				|
+						|	long long			|	8oct		|	-9.223.372.036.854.780.000	|	9.223.372.036.854.780.000	|
+						|	unsigned long long	|	8oct		|	0							|	18.446.744.073.709.600.000	|
+
+						-> exemple :
+							pour initialiser un entier il sufi de lui indiquer le nombre, si il est a virgule seul les chiffress avant la virgule seront pris en compte
+							attention a ne pas depasser les valeur min et max possible par le type
+								int	nombre;
+								nombre = 10;
+
+					-> les flotant :
+						pour contenir un nombre a virgule
+
+						|		<NOM>			| Octé\mémoire	|	val\min		|	val\max		|	les valeurs sont en exadecimal car trop grande en decimal
+						|	float				|	4oct		|	-3.4e38		|	3.4e38		|
+						|	double				|	8oct		|	-1.7e308	|	1.7e308		|
+						|	long double			|	10oct		|	-1.1e4932	|	1.1e4932	|
+
+						-> exemple :
+							pour initialiser un flotant il sufi de lui indiquer le nombre, si il est sans virgule il ajouterait des 0 aprés la virgule
+							attention a ne pas depasser les valeur min et max possible par le type
+								float	nombre;
+								nombre = 10.00000;
+
+
+			<--opperateur-->
+
+
+			<--base 42-->
+
+				-> de base :
