@@ -1,0 +1,186 @@
+
+	Apprendre Git, pour le versionning:
+
+	Ici je resume rapidement quelques commande de base pour Vim,
+	je l'etofferais avec le temps.
+
+	Sites bien pratique:
+		https://learngitbranching.js.org/?locale=fr_FR
+	
+	Mod visuel:
+
+		Télécharger et installer nodejs et ungit:
+
+			1: Télecharger et lancer le .exe https://nodejs.org/fr puis valider l'installation des tools.
+			2: Dans Bash entrée la commande "npm install -g ungit" 
+
+
+		Lancer ungit:
+
+			1: Dans votre dossier versionner ou à versionner entrée la commande "ungit".
+			2: Ouvre un autre Bash pour travailler
+
+
+		Liste de commandes:
+
+			Aide:
+
+				git help												-> Aide générale de git.
+					"commande"											-> Aide de la "commande".
+
+
+			Configuration:
+
+				git config 
+					--list												-> Etat de la configuration.
+					--global
+						user.email "email@gmail.com"					-> Configureun email d'utilisateur.
+						user.name "nom"									-> Configure un nom d'utilisateur.
+						color.ui true									-> Active les couleur pour le text.
+						branch.autosetuprebase always					-> Lors d'un pull le rebase est automatique.
+
+
+			Status et log:
+
+				git status												-> Donne l'état du projet courant.
+					-s													-> Donne une version courte de l'état du projet courant.
+
+				git log													-> Affiche la liste des commit.
+					-n													-> Affiche la liste des n dernier commit.
+					--oneline											-> Affiche la liste des commit version courte.
+					-p "fichier"										-> Affiche tous les commit modifiant "fichier".
+
+				git diff												-> Affiche toutes modiffications apporter depuis le dernier commit.
+
+
+			Versionning:
+
+				git init  												-> Créer un .git caché et initialise le versionning.
+					--bare												-> Créer un dépot distant dans le dossier courant pour accueillir un remote.
+
+				git remote
+					add "nom" "path/adresse"							-> Créer un remote nommé "nom" au "path/adresse" choisi.
+					-v													-> Donne la liste des remote.
+					remane "nom actuel" "nouveau nom"					-> Renome le remote.
+					remove "remote"										-> Supprime le "remote".
+
+				git clone
+					"path/adresse" "nom"								-> Clone le contenue du "path/adresse" dans un nouveau dossier nommé "nom".
+					"path/adresse" --depth n "nom"						-> Clone le contenue de n commit du "path/adresse" dans un nouveau dossier nommé "nom".
+
+				git push
+					"remote" "branch"									-> Envoie les modifications de la "branch" dans le "remote".
+					"remote" --delete "branch"							-> Supprime la "branch" dans le "remote".
+					-ff													-> Push et éxécute un fast forward.
+
+				git pull
+					-r													-> Récupère les modifications et rebase.
+					"remote" "branch"									-> Récupère les modifications de la "branch" depuis le "remote".
+
+
+			Checkout:
+
+				git checkout
+					"commit"											-> Permet de voir l'état du projet au "commit".
+					"fichier"											-> Ramène le "fichier" à sont état au "commit" pour modification puis Staged.
+					"branch"											-> Amène à la "branch" choisi.
+
+
+			Traking et Staging:
+
+				touch .gitignore										-> Untracked tous fichier dont le nom est dans le .gitingnore.
+
+				git add
+					"fichier"											-> Tracked et Staged le "fichier" dans l'index.
+					.													-> Tous sauf les suppression de fichier.
+					--all												-> Tous suppression de fichier comprise.
+
+				git reset												-> Unstaged le contenue de l'index.
+					HEAD "fichier"										-> Unstaged le "fichier".
+
+
+			Commit:
+
+				git commit												-> Créer un commit et vous demmande de le nommé.
+					-m "Nom du commit"									-> Créé un commit et le "nomme".
+					-a -m "Nom du commit"								-> Staged tous se qui est Tracked puis éxécute "git commit -m".
+					--amend												-> Met à jour le dernier commit en ajoutant les modifications Staged.
+
+
+			Branch:
+
+				git branch												-> Montre les branch éxistante.
+					-r													-> Montre les branch distante éxistante.
+					"nom"												-> Créé une nouvelle branch nommé "nom".
+					-d "branch"											-> Supprime la "branch" choisi.
+					-M "Nouveau nom"									-> Renome la branch courante par "Nouveau nom".
+
+				git merge 
+					"branch"											-> Merge la "branch" sur la branch courante.
+					--no-ff "branch"									-> Fait un git merge "branch" en interdisant le fast forward.
+
+
+			Revert et Reset:
+
+				Revert (ne detruits pas l'historique de commit)
+
+					git revert "commit"									-> Annule le "commit" puis éxécute "git commit -m".
+						"fichier"										-> Annule les modifications faite sur "fichier" au "commit" puis éxécute "git commit -m".
+
+
+				Reset (detruits l'hisorique de commit):
+
+					git reset											-> Unstaged le contenue de l'index.
+						HEAD^											-> Ramène au commit precedent.
+						"commit"										-> Ramène au "commit" en conservant les fichiers modifier non commit.
+							--soft										-> Garde les modifications en cour et les Staged
+							--mixed										-> Garde les modiffications en cour mais Unstaged.
+							--hard										-> Supprime toutes les modifications faite.
+
+
+			Remissage:
+
+				git stash												-> Sauvegarde toute modifications faite depuit le dernier commit et les supprime de l'index.
+					save "nom"											-> Ajoute un "nom" au satsh.
+					-u													-> Stash les fichier Untracked.
+
+					list												-> Affiche une liste des stash éxistant.
+					show stash@{n}										-> Affiche le contenu du stash n.
+						-p												-> Affiche un contenu détailler.
+
+					apply												-> Applique le contenue du stash au travaux en cour.
+					branch "nom"										-> Créer une branch nommé "nom" à partire du stash.
+
+					drop												-> Supprime le dernier stash créer.
+
+
+			Notion:
+
+				Tracking (Tracked ou Untracked):
+					Tracked:
+						Le fichier est "suivi" par Git et peut être dans un état de Staging.
+							git status -s = voir le Staging.
+					Untracked:
+						Le fichier n'est pas "suivi" par Git et ne peut être dans un état de Staging.
+							git status -s = "??" en rouge.
+					Voir commandes:
+						git add "fichier" et touch .gitignore
+
+				Staging (Staged ou Unstaged):
+					Staged:
+						La dernière version du fichier fait partie de l'index.
+							git status -s = "M " en vert, "A " si le fichier est Staged pour la premiere fois.
+					Unstaged:
+						La dernière version du fichier ne fait pas partie de l'index.
+							git status -s = " M" en rouge.
+					Voir commande:
+						git add "fichier" et git reset HEAD <fichier>.
+
+				Index:
+					Contient les fichiers Staged qui seron dans le prochain commit.
+
+				Commit:
+					Créé et versionne une nouvelle étape du projet.
+
+				Versionning:
+					Permet de maintenir disponible les anciennes et nouvelles version d'un projet sur GitHub a partir d'un dossier local.

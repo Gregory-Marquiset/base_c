@@ -1,0 +1,181 @@
+
+	compiler executer et debuger en c sous ubuntu
+		les bases sur comment compiler, executer et debuger des fichiers .c et .h sous ubuntu
+
+			format dutilisation :
+				-> base :
+					cc <nom du ou des fichiers>
+					./a.out
+
+				-> avec flags :
+					cc <flags> <nom du ou des fichiers> <flags>
+					./a.out
+
+				-> avec debuger :
+					cc <flags optionnel> <nom du ou des fichiers> <flags optionnel> -g3
+					lldb a.out
+					b <fonction ou ligne>
+					run
+					gui
+
+
+			<--compiler-->
+				creer un executable en c sous linux depuis les fichiers specifier
+					1. cc va créer un\des fichier depuis le\les fichier donner (.c = .o && .h = .gch)
+					2. cc va enssuite compiler le\les .o et .gch pour en faire un a.out
+
+				cc
+					transforme le\les fichier .c et .h en un a.out qui sera executable
+					-> exemple :
+						cc <nom du\des fichier>
+
+				<nom du ou des fichiers>
+					le\les nom de fichier (avec l'extentions) à compiler, si plusieurs fichiers, le character ' ' les separes
+
+					-> exemple pour un fichier:
+						cc main.c
+
+					-> exemple pour plusieurs fichiers:
+						cc main.c ft_fonction_1.c ft_fonction_2.c
+
+				<flags>
+					Les flags sont des options de compilation a placer devant ou deriere le <nom de\des fichier>
+
+					Les flags dont je ne me sert pas
+						-c
+							limite la compilation a la création de .o et .gch
+							-> exemple :
+								cc -c <nom du\des fichier>
+
+						-o
+							nome l'executable produit a la compilation (de base a.out), on l'execute enssuite par ./<nom choisie>
+							-> exemple :
+								cc <nom du\des fichier> -o prog
+
+					Les flags indicateurs d'avertissement (obligatoir)
+						Donne des indications sur les erreurs contenue dans le code
+						-> exemple :
+							cc -Wall -Wextra -Werror <nom du\des fichier>
+
+						-Wall
+							active les indicateurs d'avertissement structurel suivants :
+								-Waddress -Warray-bounds=1 (only with -O2) -Wbool-compare
+								-Wbool-operation -Wc++11-compat  -Wc++14-compat -Wcatch-value
+								(C++ and Objective-C++ only) -Wchar-subscripts -Wcomment
+								-Wduplicate-decl-specifier (C and Objective-C only)
+								-Wenum-compare (in C/ObjC; this is on by default in C++)
+								-Wformat -Wint-in-bool-context -Wimplicit (C and Objective-C
+								only) -Wimplicit-int (C and Objective-C only)
+								-Wimplicit-function-declaration (C and Objective-C only)
+								-Winit-self (only for C++) -Wlogical-not-parentheses -Wmain
+								(only for C/ObjC and unless -ffreestanding)
+								-Wmaybe-uninitialized -Wmemset-elt-size
+								-Wmemset-transposed-args -Wmisleading-indentation (only for
+								C/C++) -Wmissing-attributes -Wmissing-braces (only for
+								C/ObjC) -Wmultistatement-macros -Wnarrowing (only for C++)
+								-Wnonnull -Wnonnull-compare -Wopenmp-simd -Wparentheses
+								-Wpessimizing-move (only for C++) -Wpointer-sign -Wreorder
+								-Wrestrict -Wreturn-type -Wsequence-point -Wsign-compare
+								(only in C++) -Wsizeof-pointer-div -Wsizeof-pointer-memaccess
+								-Wstrict-aliasing -Wstrict-overflow=1 -Wswitch
+								-Wtautological-compare -Wtrigraphs -Wuninitialized
+								-Wunknown-pragmas -Wunused-function -Wunused-label
+								-Wunused-value -Wunused-variable -Wvolatile-register-var
+
+						-Wextra
+							active certains indicateurs d'avertissement supplémentaires qui ne sont pas activés par -Wall.
+								-Wclobbered -Wcast-function-type -Wdeprecated-copy (C++ only)
+								-Wempty-body -Wignored-qualifiers -Wimplicit-fallthrough=3
+								-Wmissing-field-initializers -Wmissing-parameter-type (C
+								only) -Wold-style-declaration (C only) -Woverride-init
+								-Wsign-compare (C only) -Wredundant-move (only for C++)
+								-Wtype-limits -Wuninitialized -Wshift-negative-value (in
+								C++11 to C++17 and in C99 and newer) -Wunused-parameter (only
+								with -Wunused or -Wall) -Wunused-but-set-parameter (only with
+								-Wunused or -Wall)
+
+						-Werror
+							Transforme tous les avertissements en erreurs.
+
+						-W -W -W
+							Attention, a ne pas utiliser, laissera passer des erreur
+
+
+			<--executer-->
+				executer un programme en c sous linux aprés compilation
+					1. la commande ./ suivie du nom du programme (a.out de base) et des argument si besoin
+					2. le programme s'execute dans le terminal
+
+				./
+					execute le programme specifier
+					-> exemple :
+						cc <flags-> <nom du\des fichier> <flags>
+						./a.out
+
+				les arguments
+					si le main demande des arguments alors les entree un à un separer d'un espace ou si characteres speciaux entre "" apres a.out
+					-> exemple :
+						cc <flags-> <nom du\des fichier> <flags>
+						./a.out argument1 argument2
+
+					-> ou si character spéciaux:
+						cc <flags-> <nom du\des fichier> <flags>
+						./a.out "argument 1" "argument 2"
+
+
+			<--debuger-->
+				comment activer et utiliser lldb pour debeuger un programme
+					1. ajouter le flags -g3 pour configurer le debuger
+					2. lancé lldb a.out pour activer le debuger
+					3. b <fonction ou ligne> active le debugage depuis le main
+					4. run executera le programme
+					5. gui passera en mode visuel
+
+				-g3
+					configure le debuger a la compilation pour pouvoir l'executer
+					-> exemple :
+						cc <flags> <nom du\des fichier> <flags> -g3
+
+				lldb
+					active le debegeur
+					-> exemple :
+						cc <flags> <nom du\des fichier> <flags> -g3
+						lldb a.out
+
+				b
+					creer un breakpoint de demarage du debuger a l'endroit specifier, main, nom de fonction ou ligne
+					-> exemple
+						cc <flags> <nom du\des fichier> <flags> -g3
+						lldb a.out
+						b main
+
+				run
+					est l'equivalant de ./ il faudra specifier le programme et les argument du main si demander
+					-> exemple
+						cc <flags> <nom du\des fichier> <flags> -g3
+						lldb a.out
+						b main
+						run a.out <argument>
+
+				gui
+					va lancé une fenetre de visualisation de l'execution du programme, n pour avancer, s pour entree dans une fonction au survole de la ligne
+					-> exemple :
+						cc <flags> <nom du\des fichier> <flags> -g3
+						lldb a.out
+						b main
+						run a.out
+						gui
+
+
+			<--base 42-->
+
+				-> de base :
+					cc -Wall -Wextra -Werror ft_*.c
+					./a.out
+
+				-> si probleme :
+					cc -Wall -Wextra -Werror ft_*.c -g3
+					lldb a.out
+					b main
+					run
+					gui

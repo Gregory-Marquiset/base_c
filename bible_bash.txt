@@ -1,0 +1,44 @@
+
+	Apprendre Bash, comme terminal:
+
+	Ici je resume rapidement quelques commande de base pour Bash,
+	je l'etofferais avec le temps.
+
+	Sites bien pratique:
+
+
+		Liste de commandes:
+
+			Aide:
+
+				git help												-> Aide générale de git.
+				git help <commande>										-> Aide de la <commande>.
+
+
+			Navigation:
+
+				ls														-> Montre le contenue du dosier courant.
+
+				pwd														-> Montre l'emplacement courant.
+
+				cd <dossier/dossier>									-> Amène dans le <dossier> ciblé.
+				cd ..													-> Ramène au dossier précedent.
+
+					fléche haut et bas									-> Navigation dans l'historique de commande entrée.
+					Tab													-> Compléte le nom de fichier commencer.
+					Tab Tab												-> Affiche les différent fichiers possible pour la complétion du nom commencer.
+
+				clear													-> vide le terminal.
+
+
+			Création, gestion de dossiers et fichiers:
+
+				mkdir "Nom de dossier"									-> Créé un dossier.
+				touch "Nom de fichier.extention"						-> Créé un fichier du type du .extention choisi.
+
+				vi "fichier"											-> Ouvre le "fichier" dans Vi.
+
+				rm
+					"fichier"											-> Supprime le "fichier".
+					-r "dossier"										-> Supprime le "dossier".
+
